@@ -123,19 +123,13 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             --accent-magenta: #f72585;
             --accent-yellow: #fee440;
             --accent-blue: #4cc9f0;
+            --accent-green: #06d6a0;
             --text-primary: #ffffff;
             --text-secondary: #8892a6;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #00f5d4 0%, #00bbf9 100%);
             --gradient-3: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Unbounded', sans-serif;
             background: var(--bg-primary);
@@ -143,472 +137,182 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: 
                 radial-gradient(circle at 20% 80%, rgba(0, 245, 212, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(247, 37, 133, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 40% 40%, rgba(76, 201, 240, 0.05) 0%, transparent 40%);
         }
-
         .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
             background-size: 50px 50px;
         }
-
-        header {
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
+        header { padding: 2rem; text-align: center; }
         .logo {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-size: 2.5rem; font-weight: 800;
+            background: var(--gradient-2); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+            text-transform: uppercase; letter-spacing: 3px;
         }
-
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            padding: 1rem;
-            margin: 1rem auto;
-            max-width: 600px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-        }
-
-        .stat-label {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .subtitle { color: var(--text-secondary); font-size: 0.9rem; font-weight: 300; letter-spacing: 2px; }
         .mode-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+            display: flex; justify-content: center; gap: 0.8rem; padding: 1rem;
+            flex-wrap: wrap; margin-bottom: 2rem;
         }
-
         .mode-btn {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid transparent;
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-family: 'Unbounded', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 400;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 0.7rem 1.2rem; border: 2px solid transparent;
+            background: var(--bg-card); color: var(--text-secondary);
+            font-family: 'Unbounded', sans-serif; font-size: 0.75rem;
+            cursor: pointer; border-radius: 50px; transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-
-        .mode-btn:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 245, 212, 0.2);
-        }
-
-        .mode-btn.active {
-            background: var(--gradient-2);
-            color: var(--bg-primary);
-            border-color: transparent;
-            font-weight: 600;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-        }
-
+        .mode-btn:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-2px); }
+        .mode-btn.active { background: var(--gradient-2); color: var(--bg-primary); font-weight: 600; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
         .card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 0.5s ease;
+            background: var(--bg-card); border-radius: 24px; padding: 2.5rem;
+            position: relative; overflow: hidden; animation: fadeIn 0.5s ease;
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-2);
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-2); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Quiz Progress */
+        .quiz-progress { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+        .progress-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--bg-secondary); transition: all 0.3s ease;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .progress-dot.current { background: var(--accent-cyan); transform: scale(1.3); }
+        .progress-dot.correct { background: var(--accent-green); }
+        .progress-dot.wrong { background: var(--accent-magenta); }
+        
+        .quiz-counter {
+            text-align: center; margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace; color: var(--text-secondary);
         }
-
-        .flashcard-container {
-            perspective: 1000px;
-            min-height: 350px;
+        .quiz-question { font-size: 1.3rem; text-align: center; margin-bottom: 2rem; font-weight: 300; line-height: 1.6; }
+        .quiz-question strong { font-weight: 600; color: var(--accent-cyan); }
+        .quiz-options { display: grid; gap: 0.8rem; }
+        .quiz-option {
+            padding: 1rem 1.2rem; background: var(--bg-secondary);
+            border: 2px solid transparent; border-radius: 16px;
+            font-family: 'Unbounded', sans-serif; font-size: 0.95rem;
+            color: var(--text-primary); cursor: pointer;
+            transition: all 0.3s ease; text-align: left;
         }
-
+        .quiz-option:hover:not(.disabled) { border-color: var(--accent-cyan); background: rgba(0, 245, 212, 0.1); transform: translateX(10px); }
+        .quiz-option.correct { border-color: var(--accent-green); background: rgba(6, 214, 160, 0.2); }
+        .quiz-option.wrong { border-color: var(--accent-magenta); background: rgba(247, 37, 133, 0.2); }
+        .quiz-option.disabled { cursor: default; opacity: 0.7; }
+        
+        .quiz-feedback { text-align: center; margin-top: 1.5rem; padding: 1rem; border-radius: 16px; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .quiz-feedback.success { background: rgba(6, 214, 160, 0.1); border: 1px solid rgba(6, 214, 160, 0.3); }
+        .quiz-feedback.error { background: rgba(247, 37, 133, 0.1); border: 1px solid rgba(247, 37, 133, 0.3); }
+        .quiz-feedback h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .quiz-feedback.success h3 { color: var(--accent-green); }
+        .quiz-feedback.error h3 { color: var(--accent-magenta); }
+        .quiz-feedback p { color: var(--text-secondary); font-size: 0.85rem; }
+        
+        .flashcard-controls { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+        .control-btn {
+            padding: 0.9rem 1.8rem; border: none; border-radius: 50px;
+            font-family: 'Unbounded', sans-serif; font-size: 0.85rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-next { background: var(--gradient-2); color: var(--bg-primary); }
+        .btn-next:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(0, 245, 212, 0.3); }
+        .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 2px solid var(--text-secondary); }
+        .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        
+        /* Results */
+        .results-container { text-align: center; }
+        .results-score {
+            font-family: 'JetBrains Mono', monospace; font-size: 4rem;
+            font-weight: 800; margin-bottom: 1rem;
+        }
+        .results-score.excellent { color: var(--accent-green); }
+        .results-score.good { color: var(--accent-cyan); }
+        .results-score.average { color: var(--accent-yellow); }
+        .results-score.poor { color: var(--accent-magenta); }
+        .results-text { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; }
+        
+        .errors-section { margin-top: 2rem; text-align: left; }
+        .errors-title { font-size: 1rem; color: var(--accent-magenta); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .error-item {
+            background: var(--bg-secondary); border-radius: 12px; padding: 1rem;
+            margin-bottom: 0.8rem; border-left: 4px solid var(--accent-magenta);
+        }
+        .error-item .question { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .error-item .your-answer { color: var(--accent-magenta); font-size: 0.85rem; }
+        .error-item .correct-answer { color: var(--accent-green); font-size: 0.85rem; }
+        
+        /* Flashcards */
+        .flashcard-container { perspective: 1000px; min-height: 320px; }
         .flashcard {
-            width: 100%;
-            height: 350px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%; height: 320px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
-
-        .flashcard.flipped {
-            transform: rotateY(180deg);
-        }
-
+        .flashcard.flipped { transform: rotateY(180deg); }
         .flashcard-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; border-radius: 24px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 2rem;
         }
-
-        .flashcard-front {
-            background: linear-gradient(145deg, var(--bg-card), #243050);
-            border: 2px solid rgba(0, 245, 212, 0.2);
-        }
-
-        .flashcard-back {
-            background: linear-gradient(145deg, #1a3a4a, var(--bg-card));
-            border: 2px solid rgba(247, 37, 133, 0.2);
-            transform: rotateY(180deg);
-        }
-
+        .flashcard-front { background: linear-gradient(145deg, var(--bg-card), #243050); border: 2px solid rgba(0, 245, 212, 0.2); }
+        .flashcard-back { background: linear-gradient(145deg, #1a3a4a, var(--bg-card)); border: 2px solid rgba(247, 37, 133, 0.2); transform: rotateY(180deg); }
         .account-number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 6rem;
-            font-weight: 600;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
+            font-family: 'JetBrains Mono', monospace; font-size: 5rem; font-weight: 600;
+            background: var(--gradient-2); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
         }
-
-        .account-hint {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            margin-top: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
+        .account-hint { color: var(--text-secondary); font-size: 0.8rem; margin-top: 2rem; text-transform: uppercase; letter-spacing: 2px; }
         .account-name {
-            font-size: 1.8rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 1rem;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.5rem; font-weight: 600; text-align: center; margin-bottom: 0.8rem;
+            background: var(--gradient-3); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .account-section {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .account-type {
-            margin-top: 1rem;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
+        .account-section { color: var(--text-secondary); font-size: 0.85rem; text-align: center; }
+        .account-type { margin-top: 0.8rem; padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
         .type-active { background: rgba(0, 245, 212, 0.2); color: var(--accent-cyan); }
         .type-passive { background: rgba(247, 37, 133, 0.2); color: var(--accent-magenta); }
         .type-mixed { background: rgba(254, 228, 64, 0.2); color: var(--accent-yellow); }
-
-        .flashcard-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .control-btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Unbounded', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-next {
-            background: var(--gradient-2);
-            color: var(--bg-primary);
-        }
-
-        .btn-next:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 40px rgba(0, 245, 212, 0.3);
-        }
-
-        .quiz-question {
-            font-size: 1.4rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .quiz-question strong {
-            font-weight: 600;
-            color: var(--accent-cyan);
-        }
-
-        .quiz-options {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .quiz-option {
-            padding: 1.2rem 1.5rem;
-            background: var(--bg-secondary);
-            border: 2px solid transparent;
-            border-radius: 16px;
-            font-family: 'Unbounded', sans-serif;
-            font-size: 1rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .quiz-option:hover:not(.disabled) {
-            border-color: var(--accent-cyan);
-            background: rgba(0, 245, 212, 0.1);
-            transform: translateX(10px);
-        }
-
-        .quiz-option.correct {
-            border-color: var(--accent-cyan);
-            background: rgba(0, 245, 212, 0.2);
-        }
-
-        .quiz-option.wrong {
-            border-color: var(--accent-magenta);
-            background: rgba(247, 37, 133, 0.2);
-        }
-
-        .quiz-option.disabled {
-            cursor: default;
-            opacity: 0.7;
-        }
-
-        .quiz-feedback {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border-radius: 16px;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .quiz-feedback.success {
-            background: rgba(0, 245, 212, 0.1);
-            border: 1px solid rgba(0, 245, 212, 0.3);
-        }
-
-        .quiz-feedback.error {
-            background: rgba(247, 37, 133, 0.1);
-            border: 1px solid rgba(247, 37, 133, 0.3);
-        }
-
-        .quiz-feedback h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .quiz-feedback.success h3 { color: var(--accent-cyan); }
-        .quiz-feedback.error h3 { color: var(--accent-magenta); }
-
-        .quiz-feedback p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .reference-filters {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
+        
+        /* Reference */
+        .reference-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .filter-btn {
-            padding: 0.6rem 1.2rem;
-            border: 1px solid var(--text-secondary);
-            background: transparent;
-            color: var(--text-secondary);
-            font-family: 'Unbounded', sans-serif;
-            font-size: 0.7rem;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            padding: 0.5rem 1rem; border: 1px solid var(--text-secondary);
+            background: transparent; color: var(--text-secondary);
+            font-family: 'Unbounded', sans-serif; font-size: 0.65rem;
+            cursor: pointer; border-radius: 50px; transition: all 0.3s ease;
         }
-
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-
-        .accounts-list {
-            display: grid;
-            gap: 0.8rem;
-        }
-
+        .filter-btn:hover, .filter-btn.active { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .accounts-list { display: grid; gap: 0.6rem; }
         .account-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; padding: 0.8rem 1.2rem;
+            background: var(--bg-secondary); border-radius: 12px; transition: all 0.3s ease;
         }
-
-        .account-item:hover {
-            background: rgba(0, 245, 212, 0.1);
-            transform: translateX(5px);
-        }
-
-        .account-item .number {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-            min-width: 60px;
-        }
-
-        .account-item .name {
-            flex: 1;
-            font-size: 0.95rem;
-        }
-
-        .account-item .type-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
+        .account-item:hover { background: rgba(0, 245, 212, 0.1); transform: translateX(5px); }
+        .account-item .number { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; color: var(--accent-cyan); min-width: 55px; }
+        .account-item .name { flex: 1; font-size: 0.9rem; }
+        .account-item .type-badge { padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.65rem; font-weight: 600; }
+        
         .section { display: none; }
         .section.active { display: block; }
-
+        
         @media (max-width: 600px) {
             .logo { font-size: 1.8rem; }
-            .stats-bar { gap: 1.5rem; }
-            .stat-value { font-size: 1.5rem; }
-            .mode-btn { padding: 0.6rem 1rem; font-size: 0.7rem; }
+            .mode-btn { padding: 0.5rem 0.8rem; font-size: 0.65rem; }
             .card { padding: 1.5rem; }
-            .account-number { font-size: 4rem; }
+            .account-number { font-size: 3.5rem; }
             .quiz-question { font-size: 1.1rem; }
-        }
-
-        .progress-ring {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 80px;
-            height: 80px;
-        }
-
-        .progress-ring circle {
-            fill: none;
-            stroke-width: 6;
-        }
-
-        .progress-ring .bg {
-            stroke: var(--bg-card);
-        }
-
-        .progress-ring .progress {
-            stroke: url(#progressGradient);
-            stroke-linecap: round;
-            transform: rotate(-90deg);
-            transform-origin: center;
-            transition: stroke-dashoffset 0.5s ease;
-        }
-
-        .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
+            .results-score { font-size: 3rem; }
         }
     </style>
 </head>
@@ -620,30 +324,17 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         <p class="subtitle">Тренажёр плана счетов</p>
     </header>
 
-    <div class="stats-bar">
-        <div class="stat">
-            <div class="stat-value" id="correctCount">0</div>
-            <div class="stat-label">Верно</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value" id="totalCount">0</div>
-            <div class="stat-label">Всего</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value" id="streakCount">0</div>
-            <div class="stat-label">Серия</div>
-        </div>
-    </div>
-
     <nav class="mode-nav">
         <button class="mode-btn active" data-mode="flashcards">Карточки</button>
         <button class="mode-btn" data-mode="quiz-number">Номер → Название</button>
         <button class="mode-btn" data-mode="quiz-name">Название → Номер</button>
         <button class="mode-btn" data-mode="quiz-type">Тип счёта</button>
+        <button class="mode-btn" data-mode="quiz-section">Раздел баланса</button>
         <button class="mode-btn" data-mode="reference">Справочник</button>
     </nav>
 
     <div class="container">
+        <!-- Flashcards -->
         <section id="flashcards" class="section active">
             <div class="flashcard-container">
                 <div class="flashcard" id="flashcard" onclick="flipCard()">
@@ -659,49 +350,23 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 </div>
             </div>
             <div class="flashcard-controls">
-                <button class="control-btn btn-next" onclick="nextFlashcard()">Следующая карточка →</button>
+                <button class="control-btn btn-next" onclick="nextFlashcard()">Следующая →</button>
             </div>
         </section>
 
-        <section id="quiz-number" class="section">
-            <div class="card">
-                <div class="quiz-question" id="quizNumberQuestion">
-                    Как называется счёт <strong>01</strong>?
-                </div>
-                <div class="quiz-options" id="quizNumberOptions"></div>
-                <div class="quiz-feedback" id="quizNumberFeedback" style="display: none;"></div>
-                <div class="flashcard-controls">
-                    <button class="control-btn btn-next" onclick="loadQuizNumber()" style="display: none;" id="quizNumberNext">Следующий вопрос →</button>
-                </div>
-            </div>
-        </section>
+        <!-- Quiz Number to Name -->
+        <section id="quiz-number" class="section"></section>
+        
+        <!-- Quiz Name to Number -->
+        <section id="quiz-name" class="section"></section>
+        
+        <!-- Quiz Type -->
+        <section id="quiz-type" class="section"></section>
+        
+        <!-- Quiz Section -->
+        <section id="quiz-section" class="section"></section>
 
-        <section id="quiz-name" class="section">
-            <div class="card">
-                <div class="quiz-question" id="quizNameQuestion">
-                    Какой номер у счёта "Основные средства"?
-                </div>
-                <div class="quiz-options" id="quizNameOptions"></div>
-                <div class="quiz-feedback" id="quizNameFeedback" style="display: none;"></div>
-                <div class="flashcard-controls">
-                    <button class="control-btn btn-next" onclick="loadQuizName()" style="display: none;" id="quizNameNext">Следующий вопрос →</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="quiz-type" class="section">
-            <div class="card">
-                <div class="quiz-question" id="quizTypeQuestion">
-                    Какой тип у счёта <strong>01</strong> "Основные средства"?
-                </div>
-                <div class="quiz-options" id="quizTypeOptions"></div>
-                <div class="quiz-feedback" id="quizTypeFeedback" style="display: none;"></div>
-                <div class="flashcard-controls">
-                    <button class="control-btn btn-next" onclick="loadQuizType()" style="display: none;" id="quizTypeNext">Следующий вопрос →</button>
-                </div>
-            </div>
-        </section>
-
+        <!-- Reference -->
         <section id="reference" class="section">
             <div class="card">
                 <div class="reference-filters" id="filters"></div>
@@ -710,27 +375,17 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </section>
     </div>
 
-    <div class="progress-ring">
-        <svg viewBox="0 0 80 80">
-            <defs>
-                <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#00f5d4"/>
-                    <stop offset="100%" stop-color="#00bbf9"/>
-                </linearGradient>
-            </defs>
-            <circle class="bg" cx="40" cy="40" r="34"/>
-            <circle class="progress" cx="40" cy="40" r="34" 
-                    stroke-dasharray="213.6" 
-                    stroke-dashoffset="213.6"
-                    id="progressCircle"/>
-        </svg>
-        <div class="progress-text" id="progressPercent">0%</div>
-    </div>
-
     <script>
-        let stats = { correct: 0, total: 0, streak: 0, maxStreak: 0 };
+        const QUIZ_LENGTH = 10;
         let accountsData = null;
-        let currentQuiz = null;
+        
+        // Quiz state for each quiz type
+        let quizStates = {
+            'quiz-number': null,
+            'quiz-name': null,
+            'quiz-type': null,
+            'quiz-section': null
+        };
 
         async function init() {
             const response = await fetch('/api/accounts');
@@ -739,29 +394,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             renderReference();
         }
 
-        function updateStats(correct) {
-            if (correct) {
-                stats.correct++;
-                stats.streak++;
-                if (stats.streak > stats.maxStreak) stats.maxStreak = stats.streak;
-            } else {
-                stats.streak = 0;
-            }
-            stats.total++;
-            document.getElementById('correctCount').textContent = stats.correct;
-            document.getElementById('totalCount').textContent = stats.total;
-            document.getElementById('streakCount').textContent = stats.streak;
-            const percent = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
-            const circumference = 2 * Math.PI * 34;
-            const offset = circumference - (percent / 100) * circumference;
-            document.getElementById('progressCircle').style.strokeDashoffset = offset;
-            document.getElementById('progressPercent').textContent = percent + '%';
-        }
-
-        function flipCard() {
-            document.getElementById('flashcard').classList.toggle('flipped');
-        }
-
+        // Flashcard functions
+        function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+        
         async function loadFlashcard() {
             const response = await fetch('/api/flashcard');
             const data = await response.json();
@@ -779,88 +414,160 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                     if (data.type === 'А') typeEl.classList.add('type-active');
                     else if (data.type === 'П') typeEl.classList.add('type-passive');
                     else typeEl.classList.add('type-mixed');
-                } else {
-                    typeEl.style.display = 'none';
-                }
+                } else { typeEl.style.display = 'none'; }
             }, 100);
         }
-
+        
         function nextFlashcard() { loadFlashcard(); }
 
-        async function loadQuizNumber() {
-            const response = await fetch('/api/quiz/number-to-name');
-            currentQuiz = await response.json();
-            document.getElementById('quizNumberQuestion').innerHTML = `Как называется счёт <strong>${currentQuiz.number}</strong>?`;
-            const optionsEl = document.getElementById('quizNumberOptions');
-            optionsEl.innerHTML = '';
-            currentQuiz.options.forEach(option => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-option';
-                btn.textContent = option;
-                btn.onclick = () => checkAnswer('number', option, btn);
-                optionsEl.appendChild(btn);
-            });
-            document.getElementById('quizNumberFeedback').style.display = 'none';
-            document.getElementById('quizNumberNext').style.display = 'none';
+        // Quiz functions
+        async function startQuiz(quizType) {
+            const apiMap = {
+                'quiz-number': '/api/quiz/number-to-name',
+                'quiz-name': '/api/quiz/name-to-number',
+                'quiz-type': '/api/quiz/type',
+                'quiz-section': '/api/quiz/section'
+            };
+            
+            // Fetch all questions
+            const questions = [];
+            for (let i = 0; i < QUIZ_LENGTH; i++) {
+                const response = await fetch(apiMap[quizType]);
+                questions.push(await response.json());
+            }
+            
+            quizStates[quizType] = {
+                questions: questions,
+                current: 0,
+                answers: [],
+                errors: []
+            };
+            
+            renderQuizQuestion(quizType);
         }
 
-        async function loadQuizName() {
-            const response = await fetch('/api/quiz/name-to-number');
-            currentQuiz = await response.json();
-            document.getElementById('quizNameQuestion').innerHTML = `Какой номер у счёта "<strong>${currentQuiz.name}</strong>"?`;
-            const optionsEl = document.getElementById('quizNameOptions');
-            optionsEl.innerHTML = '';
-            currentQuiz.options.forEach(option => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-option';
-                btn.textContent = option;
-                btn.onclick = () => checkAnswer('name', option, btn);
-                optionsEl.appendChild(btn);
-            });
-            document.getElementById('quizNameFeedback').style.display = 'none';
-            document.getElementById('quizNameNext').style.display = 'none';
+        function renderQuizQuestion(quizType) {
+            const state = quizStates[quizType];
+            const section = document.getElementById(quizType);
+            
+            if (state.current >= QUIZ_LENGTH) {
+                renderResults(quizType);
+                return;
+            }
+            
+            const q = state.questions[state.current];
+            const progressDots = Array(QUIZ_LENGTH).fill(0).map((_, i) => {
+                let cls = 'progress-dot';
+                if (i < state.current) cls += state.answers[i] ? ' correct' : ' wrong';
+                else if (i === state.current) cls += ' current';
+                return `<div class="${cls}"></div>`;
+            }).join('');
+            
+            section.innerHTML = `
+                <div class="card">
+                    <div class="quiz-progress">${progressDots}</div>
+                    <div class="quiz-counter">Вопрос ${state.current + 1} из ${QUIZ_LENGTH}</div>
+                    <div class="quiz-question">${q.question}</div>
+                    <div class="quiz-options" id="${quizType}-options">
+                        ${q.options.map((opt, i) => `<button class="quiz-option" onclick="checkQuizAnswer('${quizType}', '${opt.replace(/'/g, "\\'")}', this)">${opt}</button>`).join('')}
+                    </div>
+                    <div class="quiz-feedback" id="${quizType}-feedback" style="display: none;"></div>
+                    <div class="flashcard-controls">
+                        <button class="control-btn btn-next" id="${quizType}-next" style="display: none;" onclick="nextQuizQuestion('${quizType}')">Далее →</button>
+                    </div>
+                </div>
+            `;
         }
 
-        async function loadQuizType() {
-            const response = await fetch('/api/quiz/type');
-            currentQuiz = await response.json();
-            document.getElementById('quizTypeQuestion').innerHTML = `Какой тип у счёта <strong>${currentQuiz.number}</strong> "${currentQuiz.name}"?`;
-            const optionsEl = document.getElementById('quizTypeOptions');
-            optionsEl.innerHTML = '';
-            currentQuiz.options.forEach(option => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-option';
-                btn.textContent = option;
-                btn.onclick = () => checkAnswer('type', option, btn);
-                optionsEl.appendChild(btn);
-            });
-            document.getElementById('quizTypeFeedback').style.display = 'none';
-            document.getElementById('quizTypeNext').style.display = 'none';
-        }
-
-        function checkAnswer(quizType, answer, btnEl) {
-            const isCorrect = answer === currentQuiz.correct;
-            const feedbackEl = document.getElementById(`quiz${capitalize(quizType)}Feedback`);
-            const nextBtn = document.getElementById(`quiz${capitalize(quizType)}Next`);
-            document.querySelectorAll(`#quiz${capitalize(quizType)}Options .quiz-option`).forEach(btn => {
+        function checkQuizAnswer(quizType, answer, btnEl) {
+            const state = quizStates[quizType];
+            const q = state.questions[state.current];
+            const isCorrect = answer === q.correct;
+            
+            state.answers.push(isCorrect);
+            if (!isCorrect) {
+                state.errors.push({
+                    question: q.question,
+                    yourAnswer: answer,
+                    correctAnswer: q.correct,
+                    section: q.section || ''
+                });
+            }
+            
+            // Disable all options and show correct/wrong
+            document.querySelectorAll(`#${quizType}-options .quiz-option`).forEach(btn => {
                 btn.classList.add('disabled');
-                if (btn.textContent === currentQuiz.correct) btn.classList.add('correct');
+                if (btn.textContent === q.correct) btn.classList.add('correct');
             });
             if (!isCorrect) btnEl.classList.add('wrong');
+            
+            // Show feedback
+            const feedbackEl = document.getElementById(`${quizType}-feedback`);
             feedbackEl.style.display = 'block';
             if (isCorrect) {
                 feedbackEl.className = 'quiz-feedback success';
-                feedbackEl.innerHTML = `<h3>✓ Верно!</h3><p>${currentQuiz.section || ''}</p>`;
+                feedbackEl.innerHTML = `<h3>✓ Верно!</h3>`;
             } else {
                 feedbackEl.className = 'quiz-feedback error';
-                feedbackEl.innerHTML = `<h3>✗ Неверно</h3><p>Правильный ответ: <strong>${currentQuiz.correct}</strong></p><p>${currentQuiz.section || ''}</p>`;
+                feedbackEl.innerHTML = `<h3>✗ Неверно</h3><p>Правильный ответ: <strong>${q.correct}</strong></p>`;
             }
-            nextBtn.style.display = 'inline-block';
-            updateStats(isCorrect);
+            
+            // Update progress dots
+            const dots = document.querySelectorAll(`#${quizType} .progress-dot`);
+            dots[state.current].classList.remove('current');
+            dots[state.current].classList.add(isCorrect ? 'correct' : 'wrong');
+            
+            document.getElementById(`${quizType}-next`).style.display = 'inline-block';
         }
 
-        function capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1); }
+        function nextQuizQuestion(quizType) {
+            const state = quizStates[quizType];
+            state.current++;
+            renderQuizQuestion(quizType);
+        }
 
+        function renderResults(quizType) {
+            const state = quizStates[quizType];
+            const correct = state.answers.filter(a => a).length;
+            const percent = Math.round((correct / QUIZ_LENGTH) * 100);
+            
+            let scoreClass = 'poor';
+            let message = 'Нужно ещё поучить!';
+            if (percent >= 90) { scoreClass = 'excellent'; message = 'Отлично! Превосходный результат!'; }
+            else if (percent >= 70) { scoreClass = 'good'; message = 'Хорошо! Так держать!'; }
+            else if (percent >= 50) { scoreClass = 'average'; message = 'Неплохо, но есть над чем работать.'; }
+            
+            let errorsHtml = '';
+            if (state.errors.length > 0) {
+                errorsHtml = `
+                    <div class="errors-section">
+                        <div class="errors-title">Ошибки (${state.errors.length})</div>
+                        ${state.errors.map(e => `
+                            <div class="error-item">
+                                <div class="question">${e.question}</div>
+                                <div class="your-answer">Ваш ответ: ${e.yourAnswer}</div>
+                                <div class="correct-answer">Правильно: ${e.correctAnswer}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            document.getElementById(quizType).innerHTML = `
+                <div class="card">
+                    <div class="results-container">
+                        <div class="results-score ${scoreClass}">${correct}/${QUIZ_LENGTH}</div>
+                        <div class="results-text">${message}</div>
+                        <div class="flashcard-controls">
+                            <button class="control-btn btn-next" onclick="startQuiz('${quizType}')">Пройти ещё раз</button>
+                        </div>
+                        ${errorsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Reference
         function renderReference(filter = 'all') {
             if (!accountsData) return;
             const filtersEl = document.getElementById('filters');
@@ -884,6 +591,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 });
         }
 
+        // Navigation
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -891,10 +599,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 const mode = btn.dataset.mode;
                 document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
                 document.getElementById(mode).classList.add('active');
-                if (mode === 'quiz-number') loadQuizNumber();
-                else if (mode === 'quiz-name') loadQuizName();
-                else if (mode === 'quiz-type') loadQuizType();
-                else if (mode === 'flashcards') loadFlashcard();
+                
+                if (mode === 'flashcards') loadFlashcard();
+                else if (mode.startsWith('quiz-')) startQuiz(mode);
             });
         });
 
@@ -929,12 +636,11 @@ def quiz_number_to_name():
         options.append(all_accounts[n]["name"])
     random.shuffle(options)
     return jsonify({
-        "question": f"Как называется счёт {correct_number}?",
+        "question": f"Как называется счёт <strong>{correct_number}</strong>?",
         "number": correct_number,
         "options": options,
         "correct": correct_account["name"],
-        "section": correct_account.get("section", ""),
-        "type": correct_account.get("type", "")
+        "section": correct_account.get("section", "")
     })
 
 
@@ -948,12 +654,11 @@ def quiz_name_to_number():
     options = [correct_number] + wrong_numbers
     random.shuffle(options)
     return jsonify({
-        "question": f"Какой номер у счёта \"{correct_account['name']}\"?",
+        "question": f"Какой номер у счёта \"<strong>{correct_account['name']}</strong>\"?",
         "name": correct_account["name"],
         "options": options,
         "correct": correct_number,
-        "section": correct_account.get("section", ""),
-        "type": correct_account.get("type", "")
+        "section": correct_account.get("section", "")
     })
 
 
@@ -965,12 +670,38 @@ def quiz_type():
     type_full = {"А": "Активный", "П": "Пассивный", "А/П": "Активно-пассивный"}
     options = ["Активный", "Пассивный", "Активно-пассивный"]
     return jsonify({
-        "question": f"Какой тип у счёта {correct_number} \"{correct_account['name']}\"?",
+        "question": f"Какой тип у счёта <strong>{correct_number}</strong> \"{correct_account['name']}\"?",
         "number": correct_number,
         "name": correct_account["name"],
         "options": options,
         "correct": type_full[correct_account["type"]],
         "section": correct_account.get("section", "")
+    })
+
+
+@app.route('/api/quiz/section')
+def quiz_section():
+    correct_number = random.choice(list(ACCOUNTS.keys()))
+    correct_account = ACCOUNTS[correct_number]
+    
+    # Get all unique sections
+    all_sections = list(set(a["section"] for a in ACCOUNTS.values()))
+    correct_section = correct_account["section"]
+    
+    # Get wrong options
+    wrong_sections = [s for s in all_sections if s != correct_section]
+    wrong_sections = random.sample(wrong_sections, min(3, len(wrong_sections)))
+    
+    options = [correct_section] + wrong_sections
+    random.shuffle(options)
+    
+    return jsonify({
+        "question": f"К какому разделу относится счёт <strong>{correct_number}</strong> \"{correct_account['name']}\"?",
+        "number": correct_number,
+        "name": correct_account["name"],
+        "options": options,
+        "correct": correct_section,
+        "section": correct_section
     })
 
 
@@ -989,4 +720,3 @@ def flashcard():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)
-
